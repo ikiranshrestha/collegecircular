@@ -1,6 +1,8 @@
 <?php
 session_start();
 include_once("db.php");
+
+//to prevent post related error while reloading
 if(!empty($_POST) && $_SERVER['REQUEST_METHOD'] == 'POST'){
     $teacher_user_id = $_POST['teacher_user_id'];
     $teacher_user_password = $_POST['teacher_user_password'];
@@ -10,6 +12,8 @@ if(!empty($_POST) && $_SERVER['REQUEST_METHOD'] == 'POST'){
 	$fire= mysqli_query($connection, $sql);
 	$row= mysqli_fetch_assoc($fire);
 	
+	
+	//holding login information in session variables
 	$_SESSION['teacher_username'] = $teacher_user_id;
 	$_SESSION['teacher_password'] = $teacher_user_password;
 	

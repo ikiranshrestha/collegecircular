@@ -5,7 +5,9 @@ body{
 		padding-right: 10px;
 
 		background: #34495e;
-
+}
+.welcometext{
+	color: white;
 }
 .header1{
 	width: 100%;
@@ -92,6 +94,19 @@ body{
 	width: 100px;
 }
 
+/*Admin Interface*/
+.customnav{
+	height: 40px;
+	background: black;
+}
+.customnav ul li a{
+	padding-top: 3.25px;
+	font-size: 12px;
+	color: white;
+}
+.customnav ul li:hover{
+	background: #7f8c8d;
+}
 
 /* Footer Section */
 .site-footer

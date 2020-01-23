@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+//if user attempts to access to this page without logging in, throw the user to login page
 if (!isset($_SESSION['student_username']) AND !isset($_SESSION['student_password']))
 {
     header("Location: student_login.php?message=Please Login as Student First");
@@ -7,7 +9,7 @@ if (!isset($_SESSION['student_username']) AND !isset($_SESSION['student_password
 }
 
 include_once("db.php");
-$sql="SELECT * FROM notices WHERE notice_for = 'student' OR notice_for = 'both'";
+$sql="SELECT * FROM notices WHERE notice_for = 'student' OR notice_for = 'both' ORDER BY noticeid DESC";
 $fire = mysqli_query($connection, $sql);
 		
 ?>
@@ -31,7 +33,7 @@ $fire = mysqli_query($connection, $sql);
 	</div>
 <div class="container-fluid">
     <div class="row">
-		<div class="col-sm-9">
+		<div class="col-sm-5">
 			<div class="main-field">
 				<center>
 					<table class="table table-striped table-hover tabledec">
@@ -49,7 +51,7 @@ $fire = mysqli_query($connection, $sql);
 									<td><?php echo $row['noticeid'] ?></td>
 									<td><?php echo $row['notice_title'] ?></td>
 									<td><?php echo  $row['notice_body'] ?></td>
-									<td>2019-23-32</td>
+									<td><?php echo $row['publishing_date'] ?></td>
 								</tr>
 							</tbody>
 							<?php } ?>
@@ -57,7 +59,26 @@ $fire = mysqli_query($connection, $sql);
 				</center>
 			</div>
 		</div>
-		<div class="col-sm-4 publishbtn">
+		<div class="col-sm-6">
+			<form class="" method="post" action="">
+					<div class="row">
+						<div class="col-sm-8 add-notice-text">
+							<label for = "application_title">Application Title</label>
+							<input type ="text" name="application_title" class="form-control" placeholder="Enter suitable title for the following Application" id="application_title">
+							<label for ="application_for">Application for</label><br/>
+								<label><input type="radio" name="application_for" value="administration" class="form-group">Administration Only</label><br/>
+								<label><input type="radio" name="application_for" value="teachers" class="form-group">Teachers Only</label><br/>
+								<label><input type="radio" name="application_for" value="both" class="form-group">Both - Administration and Teachers</label><br/>
+							<label for = "application_body">Application Details</label>
+							<textarea name="application_details" class="form-control" placeholder="Write your Details" id="application_details" rows="25" cols="50"></textarea>		
+						</div>
+						<div class="col-sm-1 publishbtn">
+							<input type="submit" name="send" class="btn btn-success" value="Send">
+						</div>
+					</div>
+					</form>
+		</div>
+		<div class="col-sm-1 publishbtn">
 				<a href="logout.php"><input type="submit" class="btn btn-danger" value="Logout"></a>
 		</div>
     </div>

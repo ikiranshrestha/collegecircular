@@ -1,11 +1,13 @@
 <?php
 session_start();
+
+//if user attempts to access to this page without logging in, throw the user to login page
 if (!isset($_SESSION['admin_username']) AND !isset($_SESSION['admin_password']))
 {
     header("Location: admin_login.php?message=Please Login as Administrator First");
     die();
 }
-echo "Hello ".$_SESSION['admin_username'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +18,31 @@ echo "Hello ".$_SESSION['admin_username'];
 
 </head>
 <body>
+<nav class="navbar customnav">
+	<ul class="nav">
+		<li class= "nav-item">
+			<a class= "nav-link" href="admin_interface.php">Dashboard</a>
+		</li>
+		<li class= "nav-item">
+			<a class= "nav-link" href="index.php" target="_blank">Home Page</a>
+		</li>
+		<li class= "nav-item">
+			<a class= "nav-link" href="#">Option 3</a>
+		</li>
+		<li class= "nav-item">
+			<a class= "nav-link" href="#">Option 4</a>
+		</li>
+		<li class= "nav-item">
+			<a class= "nav-link" href="#">Option 5</a>
+		</li>
+	</ul>
+	<ul class= "navbar-nav ml-auto">	
+		<li class= "nav-item">
+			<a class= "nav-link" href="#"><?php echo "Howdy, ".$_SESSION['admin_username']." !"; ?></a>
+		</li>
+	</ul>
+</nav>
+
 <div class="header1">
 				<center>
 				<p>

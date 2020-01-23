@@ -11,6 +11,7 @@ if(!empty($_POST) && $_SERVER['REQUEST_METHOD'] == 'POST'){
 	$fire = mysqli_query($connection, $sql);
 	$row = mysqli_fetch_assoc($fire);
 	
+	//holding login information in session variables
 	$_SESSION['student_username'] = $row['student_user_id'];
 	$_SESSION['student_password'] = $row['password'];
 	
